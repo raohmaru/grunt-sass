@@ -46,6 +46,12 @@ See the `node-sass` [options](https://github.com/sass/node-sass#options), except
 
 The default value for the `precision` option is `10`, so you don't have to change it when using Bootstrap.
 
+#### silent
+Type: `Boolean`
+Default: `false`
+
+Outputs information about the status of the operations. Currently shows the written files.
+
 
 ## License
 

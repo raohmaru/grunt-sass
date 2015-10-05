@@ -10,8 +10,11 @@ module.exports = function (grunt) {
 	grunt.registerMultiTask('sass', 'Compile Sass to CSS', function () {
 		eachAsync(this.files, function (el, i, next) {
 			var opts = this.options({
-				precision: 10
+				precision: 10,
+				silent: true
 			});
+			var silent = grunt.option('verbose') || opts.silent;
+			delete opts.silent;  // Don't send to node-sass
 
 			var src = el.src[0];
 
@@ -32,7 +35,9 @@ module.exports = function (grunt) {
 				}
 
 				grunt.file.write(el.dest, res.css);
-				grunt.log.writeln("Writting " + el.dest);
+				if(!silent) {
+					grunt.log.writeln("Writting " + el.dest);
+				}
 
 				if (opts.sourceMap) {
 					grunt.file.write(this.options.sourceMap, res.map);
